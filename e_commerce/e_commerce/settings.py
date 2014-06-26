@@ -10,8 +10,16 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import paypalrestsdk
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+
+paypalrestsdk.configure({
+        "mode": os.environ.get('PAYPAL_MODE'), # sandbox or live
+        "client_id": os.environ.get('PAYPAL_CLIENT_ID'),
+        "client_secret": os.environ.get('PAYPAL_CLIENT_SECRET') 
+        })
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -36,6 +44,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'donation',
+    'checkout',
 )
 
 MIDDLEWARE_CLASSES = (
