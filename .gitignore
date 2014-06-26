@@ -3,6 +3,7 @@
 *.DS_Store
 *.db
 *.db.orig
+db.sqlite3
 *~
 
 # Byte-compiled / optimized / DLL files
