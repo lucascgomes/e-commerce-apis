@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from donation import views 
+from myapp import views 
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),

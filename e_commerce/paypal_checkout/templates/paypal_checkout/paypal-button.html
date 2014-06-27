@@ -1,0 +1,30 @@
+{% load static %}
+
+{% if not PAYPAL_MERCHANT_ID %}
+	<h3>Error: PAYPAL_MERCHANT_ID not provided </h3>
+{% else %}
+	{% if not price_amount %}
+		<h3>Error: Price amount not provided </h3>
+	{% else %}
+		
+		{% if not product_name %}
+			<h3>Error: Product name not provided </h3>
+		{% else %}
+			{% with 'paypal_checkout/paypal-button.min.js?merchant='|add:PAYPAL_MERCHANT_ID as paypal_btn_static %}
+
+				<script async async src="{% static paypal_btn_static %}"
+				data-name="{{product_name}}"
+				data-amount="{{price_amount}}"
+				data-button="buynow"
+				data-type="form"
+				data-host= "{{PAYPAL_HOST}}"
+				></script>
+
+			{% endwith %}
+		{% endif %}
+	{% endif %}
+{% endif %}
+
+	
+
+

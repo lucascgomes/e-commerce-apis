@@ -1,0 +1,20 @@
+{% load static %}
+
+<html>
+	<title>Test paypal</title>
+
+	<head> 
+		
+	</head>
+	
+	<body>
+		<h3>Test paypal APIs </h3>
+		<br/>
+		<div>
+			<h3>Item: {{product_name}} </h3>
+			<h3>Price: {{price_amount}} </h3>
+			{{PAYPAL_HOST}}
+			{% include "paypal_checkout/paypal-button.html" %}
+		</div>
+	</body>
+</html>
