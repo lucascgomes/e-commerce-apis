@@ -15,10 +15,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 PAYPAL_SANDBOX_ENABLE = True #Change to false when deploy
-#"https://www.sandbox.paypal.com/cgi-bin/webscr"
-PAYPAL_HOST = "https://www.sandbox.paypal.com" if PAYPAL_SANDBOX_ENABLE else 'www.paypal.com'
-PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
+
+PAYPAL_ENVIRONMENT = "sandbox" if PAYPAL_SANDBOX_ENABLE else ""
+PAYPAL_HOST = "www.sandbox.paypal.com" if PAYPAL_SANDBOX_ENABLE else 'www.paypal.com'
 PAYPAL_MERCHANT_ID = os.environ.get('PAYPAL_SANDBOX_MERCHANT_ID') if PAYPAL_SANDBOX_ENABLE else os.environ.get('PAYPAL_MERCHANT_ID')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
