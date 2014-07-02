@@ -13,13 +13,16 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# if the paypal ipn url == site.name/paypal/endpoint: uses paypal app for the ipn
+# else: uses paypal_checkout app for the ipn!!!
+# PS: the paypal app is used only to handle the ipn 
+# but the paypal_checkout app is used to handle everything (ipn if requested, button, return_page, etc)
+PAYPAL_TEST = True #Change to false when deploy
 
-PAYPAL_SANDBOX_ENABLE = True #Change to false when deploy
-
-PAYPAL_ENVIRONMENT = "sandbox" if PAYPAL_SANDBOX_ENABLE else ""
-PAYPAL_HOST = "www.sandbox.paypal.com" if PAYPAL_SANDBOX_ENABLE else 'www.paypal.com'
-PAYPAL_MERCHANT_ID = 'lucgms-facilitator@gmail.com' if PAYPAL_SANDBOX_ENABLE else os.environ.get('PAYPAL_MERCHANT_ID')
-
+PAYPAL_ENVIRONMENT = "sandbox" if PAYPAL_TEST else ""
+PAYPAL_HOST = "www.sandbox.paypal.com" if PAYPAL_TEST else 'www.paypal.com'
+PAYPAL_MERCHANT_ID = 'lucgms-facilitator@gmail.com' if PAYPAL_TEST else os.environ.get('PAYPAL_MERCHANT_ID')
+PAYPAL_RECEIVER_EMAIL = PAYPAL_MERCHANT_ID
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -44,8 +47,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
     'myapp',
     'paypal_checkout',
+    'paypal.standard.ipn',
 )
 
 MIDDLEWARE_CLASSES = (

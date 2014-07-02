@@ -1,4 +1,4 @@
-from paypal_ipn import Endpoint
+from models.ipn_endpoint import Endpoint
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 

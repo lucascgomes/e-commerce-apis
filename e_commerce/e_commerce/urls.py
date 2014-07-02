@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     url(r'', include('myapp.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^myapp/', include('myapp.urls')),
-    url(r'^paypal_checkout/', include('paypal_checkout.urls')),
+   	url(r'^paypal_checkout/', include('paypal_checkout.urls')),  #paypal_checkout
+   	url(r'^paypal/', include('paypal.standard.ipn.urls')), #django-paypal
 )
