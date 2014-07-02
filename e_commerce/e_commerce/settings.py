@@ -18,7 +18,7 @@ PAYPAL_SANDBOX_ENABLE = True #Change to false when deploy
 
 PAYPAL_ENVIRONMENT = "sandbox" if PAYPAL_SANDBOX_ENABLE else ""
 PAYPAL_HOST = "www.sandbox.paypal.com" if PAYPAL_SANDBOX_ENABLE else 'www.paypal.com'
-PAYPAL_MERCHANT_ID = os.environ.get('PAYPAL_SANDBOX_MERCHANT_ID') if PAYPAL_SANDBOX_ENABLE else os.environ.get('PAYPAL_MERCHANT_ID')
+PAYPAL_MERCHANT_ID = 'lucgms-facilitator@gmail.com' if PAYPAL_SANDBOX_ENABLE else os.environ.get('PAYPAL_MERCHANT_ID')
 
 
 # Quick-start development settings - unsuitable for production

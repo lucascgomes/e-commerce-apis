@@ -2,23 +2,23 @@ from django.http import HttpResponse
 import urllib
 
 class Endpoint:
-    
+
     default_response_text = 'Nothing to see here'
     verify_url = "https://www.paypal.com/cgi-bin/webscr"
-    
+
     def do_post(self, url, args):
         return urllib.urlopen(url, urllib.urlencode(args)).read()
-    
+
     def verify(self, data):
         args = {
             'cmd': '_notify-validate',
         }
         args.update(data)
         return self.do_post(self.verify_url, args) == 'VERIFIED'
-    
+
     def default_response(self):
         return HttpResponse(self.default_response_text)
-    
+
     def __call__(self, request):
         r = None
         if request.method == 'POST':
@@ -32,20 +32,20 @@ class Endpoint:
             return r
         else:
             return self.default_response()
-    
+
     def process(self, data):
         for (key, value) in data.items():
             print str(key) + " : " + str(value)
         print "OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK PROCESS"
-        
-    
+
+
     def process_invalid(self, data):
         for (key, value) in data.items():
             print str(key) + " : " + str(value)
         print "INVALID INVALID INVALID INVALID INVALID INVALID INVALID INVALID"
 
 class AppEngineEndpoint(Endpoint):
-    
+
     def do_post(self, url, args):
         from google.appengine.api import urlfetch
         return urlfetch.fetch(
@@ -55,7 +55,7 @@ class AppEngineEndpoint(Endpoint):
         ).content
 
 """
-Classes for accepting PayPal's Instant Payment Notification messages in a 
+Classes for accepting PayPal's Instant Payment Notification messages in a
 Django application (or Django-on-App-Engine):
 
 https://www.paypal.com/ipn
@@ -69,12 +69,12 @@ class MyEndPoint(Endpoint):
         # Do something with valid data from PayPal - e-mail it to yourself,
         # stick it in a database, generate a license key and e-mail it to the
         # user... whatever
-        
+
     def process_invalid(self, data):
-        # Do something with invalid data (could be from anywhere) - you 
+        # Do something with invalid data (could be from anywhere) - you
         # should probably log this somewhere
 
-These methods can optionally return an HttpResponse - if they don't, a 
+These methods can optionally return an HttpResponse - if they don't, a
 default response will be sent.
 
 Then in urls.py:
