@@ -13,6 +13,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+
+ENABLE_SSL = False #Change to true before deploying into production
+
 # if the paypal ipn url == site.name/paypal/endpoint: uses paypal app for the ipn
 # else: uses paypal_checkout app for the ipn!!!
 # PS: the paypal app is used only to handle the ipn
@@ -51,6 +54,7 @@ INSTALLED_APPS = (
     'myapp',
     'paypal_checkout',
     'paypal.standard.ipn',
+    'e_commerce.SSLMiddleware',
 )
 
 MIDDLEWARE_CLASSES = (
