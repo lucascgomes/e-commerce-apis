@@ -110,3 +110,4 @@ Then in urls.py:
     'txn_type': 'send_money',
     'verify_sign': 'AOH.JxXLRThnyE4toeuh-.oeurch23.QyBY-O1N'
 }
+"""
