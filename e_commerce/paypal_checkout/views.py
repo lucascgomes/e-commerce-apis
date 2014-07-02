@@ -1,4 +1,4 @@
-from paypal_ipn import Endpoint
+from models import Endpoint
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.shortcuts import render_to_response

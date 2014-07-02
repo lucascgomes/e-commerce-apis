@@ -15,14 +15,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # if the paypal ipn url == site.name/paypal/endpoint: uses paypal app for the ipn
 # else: uses paypal_checkout app for the ipn!!!
-# PS: the paypal app is used only to handle the ipn 
+# PS: the paypal app is used only to handle the ipn
 # but the paypal_checkout app is used to handle everything (ipn if requested, button, return_page, etc)
 PAYPAL_TEST = True #Change to false when deploy
 
 PAYPAL_ENVIRONMENT = "sandbox" if PAYPAL_TEST else ""
-PAYPAL_HOST = "www.sandbox.paypal.com" if PAYPAL_TEST else 'www.paypal.com'
+PAYPAL_HOST = "https://www.sandbox.paypal.com/cgi-bin/webscr" if PAYPAL_TEST else 'www.paypal.com'
 PAYPAL_MERCHANT_ID = 'lucgms-facilitator@gmail.com' if PAYPAL_TEST else os.environ.get('PAYPAL_MERCHANT_ID')
-PAYPAL_RECEIVER_EMAIL = PAYPAL_MERCHANT_ID
+PAYPAL_RECEIVER_EMAIL = 'lucgms-facilitator@gmail.com'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/

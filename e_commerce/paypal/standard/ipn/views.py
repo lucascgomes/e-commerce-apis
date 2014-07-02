@@ -14,10 +14,11 @@ def ipn(request, item_check_callable=None):
     PayPal IPN endpoint (notify_url).
     Used by both PayPal Payments Pro and Payments Standard to confirm transactions.
     http://tinyurl.com/d9vu9d
-    
+
     PayPal IPN Simulator:
     https://developer.paypal.com/cgi-bin/devscr?cmd=_ipn-link-session
     """
+
     #TODO: Clean up code so that we don't need to set None here and have a lot
     #      of if checks just to determine if flag is set.
     flag = None
@@ -74,4 +75,5 @@ def ipn(request, item_check_callable=None):
             ipn_obj.verify(item_check_callable)
 
     ipn_obj.save()
+    ipn_obj.send_signals()
     return HttpResponse("OKAY")

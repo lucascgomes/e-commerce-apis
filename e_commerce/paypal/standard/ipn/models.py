@@ -3,10 +3,10 @@
 from __future__ import unicode_literals
 
 from six import b
-from six.moves.urllib.request import urlopen
+from urllib import urlopen
 
 from paypal.standard.models import PayPalStandardBase
-from paypal.standard.ipn.signals import *
+from paypal.standard.ipn.signals import payment_was_successful, payment_was_flagged, payment_was_refunded, payment_was_reversed, subscription_cancel, subscription_eot, subscription_modify, subscription_signup, recurring_create, recurring_payment, recurring_cancel, recurring_skipped, recurring_failed
 
 
 class PayPalIPN(PayPalStandardBase):
@@ -28,14 +28,20 @@ class PayPalIPN(PayPalStandardBase):
     def send_signals(self):
         """Shout for the world to hear whether a txn was successful."""
         # Transaction signals:
+        print 'SEND SIGNALS'
         if self.is_transaction():
+            print 'IS TRANSACTION'
             if self.flag:
+                print 'FLAG'
                 payment_was_flagged.send(sender=self)
             elif self.is_refund():
+                print 'REFUND'
                 payment_was_refunded.send(sender=self)
             elif self.is_reversed():
+                print 'REVERSED'
                 payment_was_reversed.send(sender=self)
             else:
+                print 'SUCESSFUL'
                 payment_was_successful.send(sender=self)
         # Recurring payment signals:
         # XXX: Should these be merged with subscriptions?
