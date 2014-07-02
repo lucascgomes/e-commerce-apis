@@ -37,6 +37,7 @@ class Endpoint:
         for (key, value) in data.items():
             print str(key) + " : " + str(value)
         print "OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK PROCESS"
+        return True
         
     
     def process_invalid(self, data):
