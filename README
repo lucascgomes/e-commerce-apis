@@ -1,0 +1,9 @@
+1) I'm not using the SSL Middleware yet because it's necessary to configure nginx (in pyhton anywhere) to do the 'HTTP_X_FORWARDED_SSL' == 'on'. I don't know how to do it yet but pythonanywhere apply https for everything so it's fine.
+
+2) The invalid flag is a proxy problem. It seems there is no solution for that. For now let's just check the info, if it is the same blablabla because of this problem we can threat it as ok. Let's hope this doesn't happen in another server.
+
+
+# if the paypal ipn url == site.name/paypal/endpoint: uses paypal app for the ipn
+# else: uses paypal_checkout app for the ipn!!!
+# PS: the paypal app is used only to handle the ipn 
+# but the paypal_checkout app is used to handle everything (ipn if requested, button, return_page, etc)
