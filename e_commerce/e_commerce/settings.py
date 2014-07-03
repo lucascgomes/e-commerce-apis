@@ -23,7 +23,7 @@ ENABLE_SSL = False #Change to true before deploying into production
 PAYPAL_TEST = True #Change to false when deploy
 
 PAYPAL_ENVIRONMENT = "sandbox" if PAYPAL_TEST else ""
-PAYPAL_HOST = "https://www.sandbox.paypal.com/cgi-bin/webscr" if PAYPAL_TEST else 'www.paypal.com'
+PAYPAL_HOST = "https://www.sandbox.paypal.com/cgi-bin/webscr/" if PAYPAL_TEST else 'www.paypal.com'
 PAYPAL_MERCHANT_ID = 'lucgms-facilitator@gmail.com' if PAYPAL_TEST else os.environ.get('PAYPAL_MERCHANT_ID')
 PAYPAL_RECEIVER_EMAIL = 'lucgms-facilitator@gmail.com'
 
@@ -54,7 +54,6 @@ INSTALLED_APPS = (
     'myapp',
     'paypal_checkout',
     'paypal.standard.ipn',
-    'e_commerce.SSLMiddleware',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,6 +63,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # It's commented for now because it's necessary to configure nginx (in pyhton anywhere) to do the 'HTTP_X_FORWARDED_SSL' == 'on'
+    # I don't know how to do it yet
+    #'SSLMiddleware.SSLRedirect',
 )
 
 ROOT_URLCONF = 'e_commerce.urls'
